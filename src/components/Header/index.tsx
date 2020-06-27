@@ -4,10 +4,10 @@ import { Container } from './styles';
 import logoImg from '../../assets/TelzirLogo.svg';
 
 interface IHeaderProps{
-  openModal?: ()=> void | undefined;
+ openLoginModal: ()=> void | undefined;
 }
 
-const Header: React.FC<IHeaderProps> = ({ openModal }) => (
+const Header: React.FC<IHeaderProps> = ({ openLoginModal }) => (
   <Container>
     <header>
       <div className="logo">
@@ -19,7 +19,7 @@ const Header: React.FC<IHeaderProps> = ({ openModal }) => (
         <button
           type="button"
           onClick={() => {
-            // openModal();
+            openLoginModal();
           }}
         >
           <FiUser size={24} />
