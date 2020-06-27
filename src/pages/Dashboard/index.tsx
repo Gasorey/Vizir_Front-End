@@ -15,13 +15,12 @@ const Dashboard: React.FC = () => {
   }
 
   async function handleLogin(
-    data: IUserDTO,
+    { email, password }: IUserDTO,
   ): Promise<void> {
-    try {
-      await signIn(data);
-    } catch (err) {
-      console.log(err);
-    }
+    await signIn({
+      email,
+      password,
+    });
   }
 
   return (
