@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
     data: IUserDTO,
   ): Promise<void> {
     try {
-      signIn(data);
+      await signIn(data);
     } catch (err) {
       console.log(err);
     }
