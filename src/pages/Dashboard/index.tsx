@@ -17,10 +17,16 @@ const Dashboard: React.FC = () => {
   async function handleLogin(
     { email, password }: IUserDTO,
   ): Promise<void> {
-    await signIn({
-      email,
-      password,
-    });
+    try {
+      await signIn({
+        email,
+        password,
+      });
+      setLoginModalOpen(false);
+    } catch (err) {
+      alert('E-mail ou senha incorretos');
+      console.log(err);
+    }
   }
 
   return (

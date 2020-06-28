@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
-import { NONAME } from 'dns';
 
 interface IModalProps {
   children: any;
