@@ -40,3 +40,9 @@ display: flex;
 flex-direction: column;
 margin-left: 32px;
 `;
+export const CalculatorContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto 48px auto;
+
+`;

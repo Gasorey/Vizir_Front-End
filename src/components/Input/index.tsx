@@ -8,7 +8,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  name, icon: Icon, children, ...rest
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, registerField } = useField(name);
 
@@ -23,6 +25,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     <Container>
       {Icon && <Icon size={20} />}
       <input {...rest} ref={inputRef} defaultValue={defaultValue} />
+      {children}
     </Container>
   );
 };
