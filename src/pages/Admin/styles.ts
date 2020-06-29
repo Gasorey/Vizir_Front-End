@@ -17,9 +17,15 @@ export const ContentCreation = styled.div`
   }
 `;
 
-export const ContentData = styled.div`
-  margin-left: 80px;
+export const ContentCoverage = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
+  margin-left: 24px;
+`;
+
+export const ContentPlan = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+
 `;

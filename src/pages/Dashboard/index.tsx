@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Container } from './styles';
+import { Container, Content } from './styles';
 import Header from '../../components/Header';
 import ModalUserLogin from '../../components/ModalUserLogin';
 import IUserDTO from '../../dtos/IUserDTO';
 import { useAuth } from '../../hooks/AuthContext';
 import CoverageTable from '../../components/CoverageTable';
 import PlanTable from '../../components/PlanTable';
+import FalaMaisLogo from '../../assets/TelzirFaleMais1.svg';
 
 const Dashboard: React.FC = () => {
   const { signIn } = useAuth();
@@ -39,8 +40,9 @@ const Dashboard: React.FC = () => {
         setIsOpen={toggleLoginModal}
         handleLoginUser={handleLogin}
       />
-      <CoverageTable />
-      <PlanTable />
+      <Content>
+        <img src={FalaMaisLogo} alt="fala mais" />
+      </Content>
     </Container>
   );
 };

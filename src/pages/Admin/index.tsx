@@ -1,12 +1,11 @@
 import React, {
-  useRef, useCallback, useEffect, useState,
+  useRef, useCallback,
 } from 'react';
-import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import Header from '../../components/Header';
 import {
-  Container, ContentCreation, ContentData, Content,
+  Container, ContentCreation, Content, ContentCoverage, ContentPlan,
 } from './styles';
 import { useAuth } from '../../hooks/AuthContext';
 import api from '../../services/api';
@@ -66,12 +65,14 @@ const Admin: React.FC = () => {
             <Button type="submit">Criar Área de cobertura</Button>
           </Form>
         </ContentCreation>
-        <ContentData>
+        <ContentCoverage>
           <h1>Áreas de cobertura:</h1>
           <CoverageTable />
+        </ContentCoverage>
+        <ContentPlan>
           <h1>Planos:</h1>
           <PlanTable />
-        </ContentData>
+        </ContentPlan>
       </Content>
     </Container>
   );

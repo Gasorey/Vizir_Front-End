@@ -7,15 +7,14 @@ export const Table = styled.table`
   border-collapse: collapse;
   text-align: center;
 
-th {
-  border: 1px solid #111;
+  th {
+    border: 1px solid #111;
+    padding: 15px;
+  }
 
-  padding: 15px;
-}
+  td{
+    padding: 15px;
+    border: 1px solid #111;
+  }
 
-td{
-  padding: 15px;
-
-  border: 1px solid #111;
-}
  `;
