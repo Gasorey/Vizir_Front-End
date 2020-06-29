@@ -1,6 +1,5 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { FiUser, FiMail, FiLock } from 'react-icons/fi';
-import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import {
@@ -13,13 +12,10 @@ import Button from '../../components/Button';
 
 const SignUp: React.FC = () => {
   const history = useHistory();
-  const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
       try {
-        // formRef.current?.setErrors({});
-
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome é obrigatório'),
           email: Yup.string()

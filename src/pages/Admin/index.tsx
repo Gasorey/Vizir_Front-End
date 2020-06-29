@@ -13,7 +13,6 @@ import ICreateCoverageDTO from '../../dtos/ICreateCoverageDTO';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import ICreatePlanDTO from '../../dtos/ICreatePlanDTO';
-import IPlans from '../../dtos/IPlans';
 import CoverageTable from '../../components/CoverageTable';
 import PlanTable from '../../components/PlanTable';
 

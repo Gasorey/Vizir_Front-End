@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Content } from './styles';
+import {
+  Container, Content, ContentImg, ContentImgText, TableContent, CoverageContent, PlansContent,
+} from './styles';
 import Header from '../../components/Header';
 import ModalUserLogin from '../../components/ModalUserLogin';
 import IUserDTO from '../../dtos/IUserDTO';
@@ -41,7 +43,29 @@ const Dashboard: React.FC = () => {
         handleLoginUser={handleLogin}
       />
       <Content>
-        <img src={FalaMaisLogo} alt="fala mais" />
+        <ContentImg>
+          <img src={FalaMaisLogo} alt="fale mais" />
+        </ContentImg>
+        <ContentImgText>
+          <p>Nós da Telzir gostariamos de apresenta-los nosso mais novo produto, o
+            <strong> Telzir Fale Mais </strong>
+            com ele você consegue fazer ligações a distância por um preço muito
+            mais baixo do que o cobrado normalmente
+          </p>
+        </ContentImgText>
+        <TableContent>
+          <CoverageContent>
+            <h2>Nossa área de cobertura:</h2>
+            <CoverageTable />
+          </CoverageContent>
+          <PlansContent>
+            <h2>Nosso planos:</h2>
+            <PlanTable />
+          </PlansContent>
+        </TableContent>
+        {/* <CalculatorContent>
+          <CalculatorTable />
+        </CalculatorContent> */}
       </Content>
     </Container>
   );
