@@ -50,6 +50,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem('@Vizir: token', token);
     localStorage.setItem('@Vizir: user', JSON.stringify(user));
 
+    api.defaults.headers.authorization = `Bearer ${token}`;
+
     setData({ token, user });
   }, []);
 

@@ -16,6 +16,7 @@ import Button from '../../components/Button';
 import ICreatePlanDTO from '../../dtos/ICreatePlanDTO';
 import IPlans from '../../dtos/IPlans';
 import ICoverage from '../../dtos/ICoverage';
+import CoverageTable from '../../components/CoverageTable';
 
 const Admin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -82,7 +83,7 @@ const Admin: React.FC = () => {
         </ContentCreation>
         <ContentData>
           <h2>Áreas de cobertura:</h2>
-          {coverage.filter((mycoverage) => mycoverage.origin)}
+          <CoverageTable />
         </ContentData>
       </Content>
     </Container>
