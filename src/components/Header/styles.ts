@@ -18,14 +18,37 @@ export const Container = styled.div`
       flex-direction: column;
       margin-left:32px;
     }
+    button{
+      border: 0;
+      background: transparent;
+      align-items: center;
+      justify-content:center;
+    }
   }
   nav{
+    display: flex;
+    flex-direction: row;
   }
+  div.LogoutButton{
+   button{
+    background: transparent;
+    color: #111;
+    border: 0;
+    margin-right: 32px;
+    transition: background-color 0.4s;
+
+      &:hover{
+        color: ${shade(0.4, '#f0f0f5')}
+      }
+   }
+  }
+
   div.AdminButton{
+
     button{
       background: transparent;
-      border: 0;
       margin-right: 32px;
+      border: 0;
 
       transition: background-color 0.4;
 
