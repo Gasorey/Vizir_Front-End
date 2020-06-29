@@ -15,9 +15,6 @@ export const ContentCreation = styled.div`
   Button{
     margin-bottom: 24px;
   }
-
-
-
 `;
 
 export const ContentData = styled.div`
