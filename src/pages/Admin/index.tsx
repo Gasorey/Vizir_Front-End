@@ -15,16 +15,12 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import ICreatePlanDTO from '../../dtos/ICreatePlanDTO';
 import IPlans from '../../dtos/IPlans';
-import ICoverage from '../../dtos/ICoverage';
 import CoverageTable from '../../components/CoverageTable';
+import PlanTable from '../../components/PlanTable';
 
 const Admin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { user } = useAuth();
-
-  const [plans, setPlans] = useState<IPlans[]>([]);
-
-  const [coverage, setCoverage] = useState<ICoverage[]>([]);
 
   const handleCreateCoverage = useCallback(
     async (data: ICreateCoverageDTO) => {
@@ -50,17 +46,6 @@ const Admin: React.FC = () => {
     }, [],
   );
 
-  useEffect(() => {
-    async function loadCoverage():Promise<void> {
-      await api.get('/coverage').then((response) => {
-        const loadedCoverage = response.data;
-
-        setCoverage(loadedCoverage);
-      });
-    }
-    loadCoverage();
-  }, []);
-
   return (
 
     <Container>
@@ -82,8 +67,10 @@ const Admin: React.FC = () => {
           </Form>
         </ContentCreation>
         <ContentData>
-          <h2>Áreas de cobertura:</h2>
+          <h1>Áreas de cobertura:</h1>
           <CoverageTable />
+          <h1>Planos:</h1>
+          <PlanTable />
         </ContentData>
       </Content>
     </Container>

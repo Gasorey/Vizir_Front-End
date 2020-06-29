@@ -15,25 +15,27 @@ const CoverageTable: React.FC = () => {
       });
     }
     loadCoverage();
-  }, []);
+  }, [coverages]);
 
   return (
     <Container>
       <Table>
-        <tr>
-          <th>Origem</th>
-          <th>Destino</th>
-          <th>Preço por minuto</th>
-        </tr>
-        <tr>
-          <td>{coverages && coverages.filter((coverage) => coverage.origin)}</td>
-        </tr>
-        <tr>
-          <td>{coverages && coverages.filter((coverage) => coverage.destination)}</td>
-        </tr>
-        <tr>
-          <td>{coverages && coverages.filter((coverage) => coverage.price)}</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Preço por minuto</th>
+          </tr>
+        </thead>
+        <tbody>
+          {coverages.map((coverage) => (
+            <tr key={coverage.id}>
+              <td>{coverage.origin }</td>
+              <td>{coverage.destination}</td>
+              <td>{coverage.price }</td>
+            </tr>
+          ))}
+        </tbody>
 
       </Table>
     </Container>
