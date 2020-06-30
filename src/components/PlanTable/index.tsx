@@ -16,7 +16,7 @@ const PlanTable: React.FC = () => {
       });
     }
     loadPlans();
-  }, [plans]);
+  }, []);
 
   return (
     <Container>

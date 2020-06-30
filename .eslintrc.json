@@ -31,6 +31,7 @@
     "rules": {
       "react/jsx-props-no-spreading":"off",
       "camelcase":"off",
+      "jsx-a11y/label-has-associated-control":"off",
       "no-unused-expressions":"off",
       "react/jsx-one-expression-per-line":"off",
       "react-hooks/rules-of-hooks":"error",

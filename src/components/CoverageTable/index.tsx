@@ -15,7 +15,7 @@ const CoverageTable: React.FC = () => {
       });
     }
     loadCoverage();
-  }, [coverages]);
+  }, []);
 
   return (
     <Container>

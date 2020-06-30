@@ -11,6 +11,7 @@ import PlanTable from '../../components/PlanTable';
 import FalaMaisLogo from '../../assets/TelzirFaleMais1.svg';
 import Input from '../../components/Input';
 import Calculator from '../../components/Calculator';
+import CalculatorComponent from '../../components/FormikCalc';
 
 const Dashboard: React.FC = () => {
   const { signIn } = useAuth();
@@ -58,14 +59,17 @@ const Dashboard: React.FC = () => {
         <TableContent>
           <CoverageContent>
             <h2>Nossa área de cobertura:</h2>
-            {/* <CoverageTable /> */}
+            <CoverageTable />
           </CoverageContent>
           <PlansContent>
             <h2>Nosso planos:</h2>
-            {/* <PlanTable /> */}
+            <PlanTable />
           </PlansContent>
         </TableContent>
         <CalculatorContent>
+          {/* <CustomizedSelects /> */}
+
+          <CalculatorComponent />
 
           <Calculator />
         </CalculatorContent>
