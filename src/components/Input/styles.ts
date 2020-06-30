@@ -21,7 +21,7 @@ export const Container = styled.div`
     border: 0;
     color: #111;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
 
     &::placeholder{
       color:  #706e69;

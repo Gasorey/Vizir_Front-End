@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
-import * as Yup from 'yup';
+import { FaCalculator } from 'react-icons/fa';
+import {
+  Container, Input, Select, ResultContent, ResultWithPlan, ResultWithoutPlan,
+} from './styles';
 import api from '../../services/api';
 import IPlan from '../../dtos/IPlan';
 import IResult from '../../dtos/IResult';
 
 const CalculatorComponent: React.FC = () => {
-  const x = '2';
-
   const [plans, setPlans] = useState<IPlan[]>([]);
 
   const [result, setResult] = useState<IResult>({} as IResult);
@@ -22,7 +23,7 @@ const CalculatorComponent: React.FC = () => {
     }
     loadPlans();
   }, []);
-  console.log(result);
+
   return (
     <Formik
       initialValues={{
@@ -30,32 +31,46 @@ const CalculatorComponent: React.FC = () => {
       }}
 
       onSubmit={(values) => {
+        console.log(values);
         api.post('/calculator', values).then((response) => (
 
           setResult(response.data)
         ));
       }}
     >
-      <Form>
-        <label htmlFor="Origin">Origem</label>
-        <Field name="origin" type="text" />
-        <ErrorMessage name="Origin" />
-        <label htmlFor="lastName">Destino</label>
-        <Field name="destination" type="text" />
-        <ErrorMessage name="Destination" />
-        <label htmlFor="email">Tempo de uso</label>
-        <Field name="time" type="text" />
-        <ErrorMessage name="email" />
+      <Container>
+        <Form>
+          <h1>Calcule sua economia:</h1>
+          <Input name="origin" type="text" placeholder="Origem" />
+          <ErrorMessage name="Origem não existente" />
+          <Input name="destination" type="text" placeholder="Destino" />
+          <ErrorMessage name="Destino não existente" />
+          <Input name="time" type="text" placeholder="Tempo estimado de uso" />
+          <ErrorMessage name="email" />
 
-        <Field name="plan" as="select" className="my-select">
-          {plans.map((plan) => (
-            <option>{plan.name}</option>
-          ))}
-        </Field>
-
-        <button type="submit">Calcular</button>
-
-      </Form>
+          <Select name="plan" component="select" className="my-select">
+            <option>Selecione seu plano</option>
+            {plans.map((plan) => (
+              <option>{plan.name}</option>
+            ))}
+          </Select>
+          <button type="submit">
+            <FaCalculator size={20} />
+            Calcular
+          </button>
+        </Form>
+        <ResultContent>
+          <h1>Calcule sua conta:</h1>
+          <h2>Com nosso plano:</h2>
+          <ResultWithPlan>
+            <h2>{result.valueWithPlan}</h2>
+          </ResultWithPlan>
+          <h2>Sem o nosso plano:</h2>
+          <ResultWithoutPlan>
+            <h2>{result.valueWithoutPlan}</h2>
+          </ResultWithoutPlan>
+        </ResultContent>
+      </Container>
     </Formik>
   );
 };
