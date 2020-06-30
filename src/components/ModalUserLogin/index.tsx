@@ -24,7 +24,7 @@ const ModalUserLogin: React.FC<IModalProps> = ({ isOpen, setIsOpen, handleLoginU
 
       setIsOpen();
     },
-    [],
+    [handleLoginUser, setIsOpen],
   );
 
   return (

@@ -2,8 +2,6 @@ import React from 'react';
 import {
   FiUser, FiPower,
 } from 'react-icons/fi';
-import { GrUserAdmin } from 'react-icons/gr';
-import { FaSignInAlt } from 'react-icons/fa';
 import { Link, useHistory } from 'react-router-dom';
 import { Container } from './styles';
 import logoImg from '../../assets/TelzirLogo.svg';

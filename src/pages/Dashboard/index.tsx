@@ -9,8 +9,6 @@ import { useAuth } from '../../hooks/AuthContext';
 import CoverageTable from '../../components/CoverageTable';
 import PlanTable from '../../components/PlanTable';
 import FalaMaisLogo from '../../assets/TelzirFaleMais1.svg';
-import Input from '../../components/Input';
-import Calculator from '../../components/Calculator';
 import CalculatorComponent from '../../components/FormikCalc';
 
 const Dashboard: React.FC = () => {
@@ -67,11 +65,8 @@ const Dashboard: React.FC = () => {
           </PlansContent>
         </TableContent>
         <CalculatorContent>
-          {/* <CustomizedSelects /> */}
           <CalculatorComponent />
-
         </CalculatorContent>
-
       </Content>
     </Container>
   );

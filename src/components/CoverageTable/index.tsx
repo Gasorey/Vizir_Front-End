@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Container, Table } from './styles';
 import ICoverage from '../../dtos/ICoverage';
 import api from '../../services/api';
+import formatValue from '../../utils/FormatValue';
 
 const CoverageTable: React.FC = () => {
   const [coverages, setCoverages] = useState<ICoverage[]>([]);
 
   useEffect(() => {
     async function loadCoverage():Promise<void> {
-      await api.get('/coverage').then((response) => {
+      await api.get<ICoverage[]>('/coverage').then((response) => {
         const loadedCoverage = response.data;
 
         setCoverages(loadedCoverage);
@@ -32,7 +33,7 @@ const CoverageTable: React.FC = () => {
             <tr key={coverage.id}>
               <td>{coverage.origin }</td>
               <td>{coverage.destination}</td>
-              <td>{coverage.price }</td>
+              <td>{formatValue(coverage.price) }</td>
             </tr>
           ))}
         </tbody>

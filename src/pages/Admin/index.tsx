@@ -7,7 +7,6 @@ import Header from '../../components/Header';
 import {
   Container, ContentCreation, Content, ContentCoverage, ContentPlan,
 } from './styles';
-import { useAuth } from '../../hooks/AuthContext';
 import api from '../../services/api';
 import ICreateCoverageDTO from '../../dtos/ICreateCoverageDTO';
 import Input from '../../components/Input';
@@ -18,7 +17,6 @@ import PlanTable from '../../components/PlanTable';
 
 const Admin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { user } = useAuth();
 
   const handleCreateCoverage = useCallback(
     async (data: ICreateCoverageDTO) => {

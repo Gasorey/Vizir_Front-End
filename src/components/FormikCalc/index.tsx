@@ -3,6 +3,7 @@ import {
   Formik, Form, ErrorMessage,
 } from 'formik';
 import { FaCalculator } from 'react-icons/fa';
+import * as Yup from 'yup';
 import {
   Container, Input, Select, ResultContent, ResultWithPlan, ResultWithoutPlan,
 } from './styles';
@@ -14,13 +15,8 @@ import formatValue from '../../utils/FormatValue';
 const CalculatorComponent: React.FC = () => {
   const [plans, setPlans] = useState<IPlan[]>([]);
 
-  const [result, setResult] = useState<IResult>({} as IResult);
-
   const [formatedWithPlan, setFormatedWithPlan] = useState<string>();
   const [formatedWithoutPlan, setFormatedWithoutPlan] = useState<string>();
-
-  const formatedResultWithPlan = formatValue(result.valueWithPlan);
-  const formatedResultWithoutPlan = formatValue(result.valueWithoutPlan);
 
   useEffect(() => {
     async function loadPlans(): Promise<void> {
@@ -37,7 +33,11 @@ const CalculatorComponent: React.FC = () => {
         origin: '', destination: '', time: '', plan: '',
       }}
 
-      onSubmit={(values) => {
+      validationSchema={Yup.object({
+        origin: Yup.number().required('Por favor informe a  origem'),
+      })}
+
+      onSubmit={(values, { setSubmitting }) => {
         api.post<IResult>('/calculator', values).then((response) => {
           const { valueWithPlan } = response.data;
           const { valueWithoutPlan } = response.data;
@@ -48,12 +48,15 @@ const CalculatorComponent: React.FC = () => {
           setFormatedWithPlan(formatWithPlan);
           setFormatedWithoutPlan(formatWithoutPlan);
         });
+        setSubmitting(false);
       }}
     >
       <Container>
+
         <Form>
           <h1>Calcule sua economia:</h1>
           <Input name="origin" type="text" placeholder="Origem" />
+
           <ErrorMessage name="Origem não existente" />
           <Input name="destination" type="text" placeholder="Destino" />
           <ErrorMessage name="Destino não existente" />
@@ -68,12 +71,12 @@ const CalculatorComponent: React.FC = () => {
           </Select>
           <button
             type="submit"
-
           >
             <FaCalculator size={20} />
             Calcular
           </button>
         </Form>
+
         <ResultContent>
           <h1>Calcule sua conta:</h1>
           <h2>Com nosso plano:</h2>
