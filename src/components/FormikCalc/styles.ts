@@ -73,6 +73,7 @@ export const ResultWithPlan = styled.div`
   margin-top: 24px;
   background: #fff;
   border: 2px solid #111;
+
   h2{
     margin: auto auto;
   }

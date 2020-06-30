@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Formik, Field, Form, ErrorMessage,
+  Formik, Form, ErrorMessage,
 } from 'formik';
 import { FaCalculator } from 'react-icons/fa';
 import {
@@ -9,11 +9,18 @@ import {
 import api from '../../services/api';
 import IPlan from '../../dtos/IPlan';
 import IResult from '../../dtos/IResult';
+import formatValue from '../../utils/FormatValue';
 
 const CalculatorComponent: React.FC = () => {
   const [plans, setPlans] = useState<IPlan[]>([]);
 
   const [result, setResult] = useState<IResult>({} as IResult);
+
+  const [formatedWithPlan, setFormatedWithPlan] = useState<string>();
+  const [formatedWithoutPlan, setFormatedWithoutPlan] = useState<string>();
+
+  const formatedResultWithPlan = formatValue(result.valueWithPlan);
+  const formatedResultWithoutPlan = formatValue(result.valueWithoutPlan);
 
   useEffect(() => {
     async function loadPlans(): Promise<void> {
@@ -31,11 +38,16 @@ const CalculatorComponent: React.FC = () => {
       }}
 
       onSubmit={(values) => {
-        console.log(values);
-        api.post('/calculator', values).then((response) => (
+        api.post<IResult>('/calculator', values).then((response) => {
+          const { valueWithPlan } = response.data;
+          const { valueWithoutPlan } = response.data;
 
-          setResult(response.data)
-        ));
+          const formatWithPlan = formatValue(valueWithPlan);
+          const formatWithoutPlan = formatValue(valueWithoutPlan);
+
+          setFormatedWithPlan(formatWithPlan);
+          setFormatedWithoutPlan(formatWithoutPlan);
+        });
       }}
     >
       <Container>
@@ -54,7 +66,10 @@ const CalculatorComponent: React.FC = () => {
               <option>{plan.name}</option>
             ))}
           </Select>
-          <button type="submit">
+          <button
+            type="submit"
+
+          >
             <FaCalculator size={20} />
             Calcular
           </button>
@@ -63,11 +78,13 @@ const CalculatorComponent: React.FC = () => {
           <h1>Calcule sua conta:</h1>
           <h2>Com nosso plano:</h2>
           <ResultWithPlan>
-            <h2>{result.valueWithPlan}</h2>
+
+            <h2>{formatedWithPlan}</h2>
+
           </ResultWithPlan>
           <h2>Sem o nosso plano:</h2>
           <ResultWithoutPlan>
-            <h2>{result.valueWithoutPlan}</h2>
+            <h2>{formatedWithoutPlan}</h2>
           </ResultWithoutPlan>
         </ResultContent>
       </Container>
