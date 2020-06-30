@@ -1,44 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
 import * as Yup from 'yup';
+import api from '../../services/api';
+import IPlan from '../../dtos/IPlan';
+import IResult from '../../dtos/IResult';
 
 const CalculatorComponent: React.FC = () => {
   const x = '2';
 
+  const [plans, setPlans] = useState<IPlan[]>([]);
+
+  const [result, setResult] = useState<IResult>({} as IResult);
+
+  useEffect(() => {
+    async function loadPlans(): Promise<void> {
+      await api.get('/plans').then((response) => (
+        setPlans(response.data)
+      ));
+    }
+    loadPlans();
+  }, []);
+  console.log(result);
   return (
     <Formik
-      initialValues={{ firstName: '', lastName: '', email: '' }}
-      validationSchema={Yup.object({
-        firstName: Yup.string()
-          .max(15, 'Must be 15 characters or less')
-          .required('Required'),
-        lastName: Yup.string()
-          .max(20, 'Must be 20 characters or less')
-          .required('Required'),
-        email: Yup.string()
-          .email('Invalid email address')
-          .required('Required'),
-      })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+      initialValues={{
+        origin: '', destination: '', time: '', plan: '',
+      }}
+
+      onSubmit={(values) => {
+        api.post('/calculator', values).then((response) => (
+
+          setResult(response.data)
+        ));
       }}
     >
       <Form>
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" type="text" />
-        <ErrorMessage name="firstName" />
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" type="text" />
-        <ErrorMessage name="lastName" />
-        <label htmlFor="email">Email Address</label>
-        <Field name="email" type="email" />
+        <label htmlFor="Origin">Origem</label>
+        <Field name="origin" type="text" />
+        <ErrorMessage name="Origin" />
+        <label htmlFor="lastName">Destino</label>
+        <Field name="destination" type="text" />
+        <ErrorMessage name="Destination" />
+        <label htmlFor="email">Tempo de uso</label>
+        <Field name="time" type="text" />
         <ErrorMessage name="email" />
-        <button type="submit">Submit</button>
+
+        <Field name="plan" as="select" className="my-select">
+          {plans.map((plan) => (
+            <option>{plan.name}</option>
+          ))}
+        </Field>
+
+        <button type="submit">Calcular</button>
+
       </Form>
     </Formik>
   );

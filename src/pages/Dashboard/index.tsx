@@ -68,10 +68,8 @@ const Dashboard: React.FC = () => {
         </TableContent>
         <CalculatorContent>
           {/* <CustomizedSelects /> */}
-
           <CalculatorComponent />
 
-          <Calculator />
         </CalculatorContent>
 
       </Content>
